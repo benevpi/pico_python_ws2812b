@@ -25,6 +25,8 @@ A simple example is the following typed into the interpreter:
 >>> pixels.show()
 >>> pixels.set_pixel(5,0,10,0)
 >>> pixels.show()
+>>> pixels.fill(20,5,0)
+>>> pixels.show()
 ```
 
 Pull requests are open if you'd like more features!
