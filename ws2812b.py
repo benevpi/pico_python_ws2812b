@@ -29,4 +29,9 @@ class ws2812b:
     def show(self):
         for i in range(self.num_leds):
             self.sm.put(self.pixels[i],8)
+            
+    def fill(self, red, green, blue):
+        for i in range(self.num_leds):
+            self.set_pixel(i, red, green, blue)
+        
         
