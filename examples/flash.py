@@ -2,7 +2,10 @@ import time
 from ws2812b import ws2812b
 
 num_leds = 30
-pixels = ws2812b(num_leds, 0,0)
+pixels = ws2812b(num_leds, 0,0, delay=0)
+
+pixels.fill(10,10,10)
+pixels.show()
 
 while True:
     for i in range(num_leds):
