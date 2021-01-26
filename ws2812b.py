@@ -27,7 +27,7 @@ class ws2812b:
         self.num_leds = num_leds
         self.delay = delay
     
-    # Set an array of pixels starting from "pixel1" to "pixel2" to the desired color.
+      # Set an array of pixels starting from "pixel1" to "pixel2" to the desired color.
     def set_pixel_line(self, pixel1, pixel2, red, green,blue):
         self.pixels[pixel1:pixel2+1] = [blue | red << 8 | green << 16] * len(self.pixels[pixel1:pixel2+1])
 
