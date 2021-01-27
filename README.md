@@ -15,18 +15,12 @@ pixels = ws2812b.ws2812b(10,0,0)
 
 This object has two methods, show() which sends the data to the strip, and set_pixel which sets the colour values for a particular LED. The parameters are LED number, red, green, blue with the colours taking values between 0 and 255.
 
-A simple example is the following typed into the interpreter (warning, fill(...) will light up all the LEDs, so only run this line if you want to turn them all on). For reasons as yet unknown, there seems to sometimes be an issue with the interpreter. I've investigating, but it does seem to always work when run from a file. If the following gives you problems, try loading an file from examples:
+At the moment, this isn't working with the interpreter, so you have to run it from a file. Looks like it's running just too slow to keep up with the PIO buffer from the interpreter. The key methods are set_pixel(r,g,b), set_pixel_line(p1, p2, r, g, b) which sets a row of pixels from pixel p1 to pixel p2 (inclusive), and fill(r,g,b) which fills all the pixels with the colour r,g,b.
 
 ```
->>> import ws2812b
->>> pixels = ws2812b.ws2812b(10,0,0)
->>> pixels.show()
->>> pixels.set_pixel(5,10,0,0)
->>> pixels.show()
->>> pixels.set_pixel(5,0,10,0)
->>> pixels.show()
->>> pixels.fill(20,5,0)
->>> pixels.show()
+pixels.set_pixel(5,10,0,0)
+pixels.set_pixel_line(5,7,0,10,0)
+pixels.fill(20,5,0)
 ```
 
 Pull requests are open if you'd like more features!
