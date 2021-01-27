@@ -26,6 +26,21 @@ class ws2812b:
         self.sm.active(1)
         self.num_leds = num_leds
         self.delay = delay
+        
+      # Create a gradient with two RGB colors between "pixel1" and "pixel2" (inclusive)
+    def linear_gradient(self, pixel1, pixel2, left_red, left_green, left_blue, right_red, right_green, right_blue):
+        if pixel2 - pixel1 == 0: return
+    
+        right_pixel = max(pixel1, pixel2)
+        left_pixel = min(pixel1, pixel2)
+        
+        for i in range(right_pixel - left_pixel + 1):
+            fraction = i / (right_pixel - left_pixel)
+            red = round((right_red - left_red) * fraction + left_red)
+            green = round((right_green - left_green) * fraction + left_green)
+            blue = round((right_blue - left_blue) * fraction + left_blue)
+            
+            self.set_pixel(left_pixel + i, red, green, blue)
     
       # Set an array of pixels starting from "pixel1" to "pixel2" to the desired color.
     def set_pixel_line(self, pixel1, pixel2, red, green, blue):
