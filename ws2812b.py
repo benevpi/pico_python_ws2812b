@@ -28,7 +28,7 @@ class ws2812b:
         self.delay = delay
         
       # Create a gradient with two RGB colors between "pixel1" and "pixel2" (inclusive)
-    def linear_gradient(self, pixel1, pixel2, left_red, left_green, left_blue, right_red, right_green, right_blue):
+    def set_pixel_line_gradient(self, pixel1, pixel2, left_red, left_green, left_blue, right_red, right_green, right_blue):
         if pixel2 - pixel1 == 0: return
     
         right_pixel = max(pixel1, pixel2)
