@@ -2,7 +2,6 @@ import time
 import ws2812b
 import random
 
-bright_div = 20
 numpix = 50  # Number of NeoPixels
 # Pin where NeoPixels are connected
 strip = ws2812b.ws2812b(numpix, 0,0)
