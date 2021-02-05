@@ -66,7 +66,18 @@ class ws2812b:
         green = round(green * (self.brightness() / 255))
 
         self.pixels[pixel_num] = blue | red << 8 | green << 16
-        
+    
+    # rotate x pixels to te left
+    def rotate_left(self, num_of_pixels):
+        if num_of_pixels != None:
+            self.pixels = self.pixels[num_of_pixels:] + self.pixels[:num_of_pixels]
+
+    # rotate x pixels to the right
+    def rotate_right(self, num_of_pixels):
+        if num_of_pixels != None:
+            num_of_pixels = -1 * num_of_pixels
+            self.pixels = self.pixels[num_of_pixels:] + self.pixels[:num_of_pixels]
+
     def show(self):
         for i in range(self.num_leds):
             self.sm.put(self.pixels[i],8)
