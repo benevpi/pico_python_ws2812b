@@ -69,14 +69,16 @@ class ws2812b:
     
     # rotate x pixels to te left
     def rotate_left(self, num_of_pixels):
-        if num_of_pixels != None:
-            self.pixels = self.pixels[num_of_pixels:] + self.pixels[:num_of_pixels]
+        if num_of_pixels == None:
+            num_of_pixels = 1
+        self.pixels = self.pixels[num_of_pixels:] + self.pixels[:num_of_pixels]
 
     # rotate x pixels to the right
     def rotate_right(self, num_of_pixels):
-        if num_of_pixels != None:
-            num_of_pixels = -1 * num_of_pixels
-            self.pixels = self.pixels[num_of_pixels:] + self.pixels[:num_of_pixels]
+        if num_of_pixels == None:
+            num_of_pixels = 1
+        num_of_pixels = -1 * num_of_pixels
+        self.pixels = self.pixels[num_of_pixels:] + self.pixels[:num_of_pixels]
 
     def show(self):
         for i in range(self.num_leds):
