@@ -67,7 +67,7 @@ class ws2812b:
 
         self.pixels[pixel_num] = blue | red << 8 | green << 16
     
-    # rotate x pixels to te left
+    # rotate x pixels to the left
     def rotate_left(self, num_of_pixels):
         if num_of_pixels == None:
             num_of_pixels = 1
