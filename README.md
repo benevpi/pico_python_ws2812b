@@ -1,3 +1,9 @@
+# Retired
+This library is now retired and won't be getting updates. There's an improved version here: https://github.com/blaz-r/pi_pico_neopixel This version extends the code here and includes support for RGBW LEDs as well as RGB leds with the R, G and B components in a different order.
+
+I'll leave the code here for the foreseeable future, so feel free to use it, extend it or modify it as you see fit, but the above library is an improvement.
+
+
 # pico_ws2812b
 a library for using WS2812b leds (aka neopixels) with Raspberry Pi Pico
 
