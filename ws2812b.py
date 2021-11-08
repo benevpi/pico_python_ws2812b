@@ -26,6 +26,33 @@ class ws2812b:
         self.sm.active(1)
         self.num_leds = num_leds
         self.delay = delay
+        self.brightnessvalue = 255
+
+    # Set the overal value to adjust brightness when updating leds
+    def brightness(self, brightness = None):
+        if brightness == None:
+            return self.brightnessvalue
+        else:
+            if (brightness < 1):
+                brightness = 1
+        if (brightness > 255):
+            brightness = 255
+        self.brightnessvalue = brightness
+
+      # Create a gradient with two RGB colors between "pixel1" and "pixel2" (inclusive)
+    def set_pixel_line_gradient(self, pixel1, pixel2, left_red, left_green, left_blue, right_red, right_green, right_blue):
+        if pixel2 - pixel1 == 0: return
+    
+        right_pixel = max(pixel1, pixel2)
+        left_pixel = min(pixel1, pixel2)
+        
+        for i in range(right_pixel - left_pixel + 1):
+            fraction = i / (right_pixel - left_pixel)
+            red = round((right_red - left_red) * fraction + left_red)
+            green = round((right_green - left_green) * fraction + left_green)
+            blue = round((right_blue - left_blue) * fraction + left_blue)
+            
+            self.set_pixel(left_pixel + i, red, green, blue)
     
       # Set an array of pixels starting from "pixel1" to "pixel2" to the desired color.
     def set_pixel_line(self, pixel1, pixel2, red, green, blue):
@@ -33,8 +60,26 @@ class ws2812b:
             self.set_pixel(i, red, green, blue)
 
     def set_pixel(self, pixel_num, red, green, blue):
+        # Adjust color values with brightnesslevel
+        blue = round(blue * (self.brightness() / 255))
+        red = round(red * (self.brightness() / 255))
+        green = round(green * (self.brightness() / 255))
+
         self.pixels[pixel_num] = blue | red << 8 | green << 16
-        
+    
+    # rotate x pixels to the left
+    def rotate_left(self, num_of_pixels):
+        if num_of_pixels == None:
+            num_of_pixels = 1
+        self.pixels = self.pixels[num_of_pixels:] + self.pixels[:num_of_pixels]
+
+    # rotate x pixels to the right
+    def rotate_right(self, num_of_pixels):
+        if num_of_pixels == None:
+            num_of_pixels = 1
+        num_of_pixels = -1 * num_of_pixels
+        self.pixels = self.pixels[num_of_pixels:] + self.pixels[:num_of_pixels]
+
     def show(self):
         for i in range(self.num_leds):
             self.sm.put(self.pixels[i],8)
